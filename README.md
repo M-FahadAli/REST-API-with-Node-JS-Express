@@ -30,52 +30,53 @@ To install the necessary packages for our project, we'll utilize NPM, ensuring t
 <img src="https://img.hotimg.com/Screenshot-2024-02-24-at-1.51.03AM.png" alt="Screenshot-2024-02-24-at-1.51.03AM.png" border="0" />
 <br />
 <br />
-Create a js file named whatever, in our case index.js in your API folder directory. I then built a simple outline of the API running on localhost port 3000 which I will build on to. Use the command "nodemon index.js" to start the Node JS server.: <br/>
-<img src="https://imgur.com/mYdDrgM.png" height="80%" width="80%" alt="set up"/>
+To get started, create a file named index.js in your API folder. This will serve as your Node.js server's entry point. Within index.js, define your API's basic structure, including importing modules and setting up routes. Install nodemon globally or locally to enable automatic server restarts upon file changes. Navigate to the directory containing index.js in your terminal, then run "nodemon index.js" to start the server. It'll run on localhost:3000 by default. With the server running, you can proceed to build your API by adding endpoints and handling requests: <br/>
+<img src="https://img.hotimg.com/Screenshot-2024-02-24-at-1.51.10GCAM.png" alt="Screenshot-2024-02-24-at-1.51.10GCAM.png" border="0" />
 <br />
 <br />
-Here is the outline of the API and its functionalities, as well as the use of Postman to send API request to our REST API (POST, PUT, DELETE, and GET). We will be using header for authentication and body for miscellaneous purposes (reason why I used bodyParser):  <br/>
-<img src="https://imgur.com/IuvhRab.png" height="80%" width="80%" alt="set up"/>
+Below is the initial outline of our API along with its functionalities. We'll utilize Postman for sending requests to our REST API, including POST, PUT, DELETE, and GET methods. Authentication will be handled via headers, while the request body will serve various purposes (hence the use of bodyParser).  <br/>
+<img src="https://img.hotimg.com/Screenshot-2024-02-24-at-1.51.18GCAM.png" alt="Screenshot-2024-02-24-at-1.51.18GCAM.png" border="0" />
 <br />
 <br />
-Build the database for the medical records and the patients:  <br/>
-<img src="https://imgur.com/9YZZJq1.png" height="80%" width="80%" alt="set up"/>
+Construct the database for managing medical records and patient information.
+ <br/>
+<img src="https://img.hotimg.com/Screenshot-2024-02-24-at-1.51.23GCAM.png" alt="Screenshot-2024-02-24-at-1.51.23GCAM.png" border="0" />
 <br />
 <br />
-Now I will begin working on the functionalities, for the GET method there are a couple things we need to verify as shown below before we can provide the medical records. I've also logged the headers data from Postman to my server to test if the data is being recieved correctly:  <br/>
-<img src="https://imgur.com/jKDTMRz.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="https://imgur.com/bwIMDYd.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Next, I'll focus on implementing the functionalities. For the GET method, there are specific checks we need to perform before providing the medical records. I've also implemented logging of headers data from Postman to the server to ensure proper data reception.  <br/>
+<img src="https://img.hotimg.com/Screenshot-2024-02-24-at-1.51.30GCAM.png" alt="Screenshot-2024-02-24-at-1.51.30GCAM.png" border="0" />
+<img src="https://img.hotimg.com/Screenshot-2024-02-24-at-1.51.35GCAM.png" alt="Screenshot-2024-02-24-at-1.51.35GCAM.png" border="0" />
 <br />
 <br />
-I then created a if statement which checks to verify that if the values in the "sin" header does not match then respond with a status 404 code using a JSON message "Patient not found".:  <br/>
-<img src="https://imgur.com/edFEDXC.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Following that, I've implemented an if statement to validate whether the values in the "sin" header match. If there's no match, the server responds with a status code 404 along with a JSON message stating "Patient not found".  <br/>
+<img src="https://img.hotimg.com/Screenshot-2024-02-24-at-1.51.45GCAM.png" alt="Screenshot-2024-02-24-at-1.51.45GCAM.png" border="0" />
 <br />
 <br />
-Then created another if statement to verify if the firstname and lastname match with the corresponding sin. If successfull return status 200 (OK) with the mediacal record and a JSON message, else return an error JSON message with status 401 (unauthorized):  <br/>
-<img src="https://imgur.com/bGWNHPr.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Subsequently, I created another if statement to cross-verify if the provided first name and last name match with the corresponding sin. If successful, the server responds with a status code 200 (OK), providing the medical record along with a JSON message. Otherwise, an error JSON message is returned with status code 401 (Unauthorized).  <br/>
+<img src="https://img.hotimg.com/Screenshot-2024-02-24-at-1.51.50GCAM.png" alt="Screenshot-2024-02-24-at-1.51.50GCAM.png" border="0" />
 <br />
 <br />
 :  <br/>
-<img src="https://imgur.com/INiv9Ii.png" height="80%" width="80%" alt="Cyber Attack Event Management"/>
+<img src="https://img.hotimg.com/Screenshot-2024-02-24-at-1.52.03GCAM.png" alt="Screenshot-2024-02-24-at-1.52.03GCAM.png" border="0" />
 <br />
 <br />
-For the next function, We will use the POST method to create a new patient we want to be able to assert a new patient from the header to the database. So if the patients sin match equals the firstname, lastname, and phone. then add the patient to the database with a status 200 (OK):  
+For the next function, we'll utilize the POST method to create a new patient. We aim to verify the new patient's information provided in the header against existing data in the database. If the patient's SIN matches the provided first name, last name, and phone number, the patient will be added to the database with a status code 200 (OK).
 <br/>
-<img src="https://imgur.com/W5alK8v.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://img.hotimg.com/Screenshot-2024-02-24-at-1.52.07GCAM.png" alt="Screenshot-2024-02-24-at-1.52.07GCAM.png" border="0" />
 <br />
 <br />
-Next create a funtion for updating a patients phone number, we need to verify the sin, verify if the first and last name match the sin, then we can use the PUT method to update the phone number and return the updated database in the body:  <br/>
-<img src="https://imgur.com/TkkHxBu.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Next, let's create a function to update a patient's phone number. We'll start by verifying the SIN provided in the request. Then, we'll confirm if the first and last names match the SIN in the database. Upon successful verification, we'll utilize the PUT method to update the phone number. Finally, we'll return the updated database in the response body. <br/>
+<img src="https://img.hotimg.com/Screenshot-2024-02-24-at-1.52.15GCAM.png" alt="Screenshot-2024-02-24-at-1.52.15GCAM.png" border="0" />
 <br />
 <br />
-Lastly we will create a funtion to delete patients and medical records, again we need to verify if the patients sin exists in the database, verify if the sin matches with the first and last name, then we are able to delete the patient or records from our database using the DELETE Method. Else return error code with JSON message indicating the credentials don't match the sin on file:  <br/>
-<img src="https://imgur.com/vXCpzaR.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Finally, let's implement a function to delete patients and their associated medical records. We'll begin by verifying if the patient's SIN exists in the database. Then, we'll confirm if the provided SIN matches the first and last name associated with it. If the credentials match, we can proceed to delete the patient and their records using the DELETE method. Otherwise, we'll return an error code along with a JSON message indicating that the credentials don't match the SIN on file.
+<br/>
+<img src="https://img.hotimg.com/Screenshot-2024-02-24-at-1.52.37GCAM.png" alt="Screenshot-2024-02-24-at-1.52.37GCAM.png" border="0" />
 <br />
 <br />
 
 <br />
-This Concludes This REST API for a Medical Clinic Project!
-NOTE: You can build on this and add more security layers and conditions as it would be in real life!  <br/>
+In conclusion, the project involved the development of a REST API for a Medical Clinic. Key functionalities included handling GET, POST, PUT, and DELETE methods to manage patient records. Verification checks were implemented to ensure data accuracy and security. Throughout the project, emphasis was placed on robustness and adherence to RESTful principles.  
 <br />
 </p>
 
